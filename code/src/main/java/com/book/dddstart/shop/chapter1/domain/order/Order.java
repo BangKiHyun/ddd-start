@@ -3,6 +3,10 @@ package com.book.dddstart.shop.chapter1.domain.order;
 import java.util.List;
 
 public class Order {
+    // 엔티티 식별자를 밸류 타입으로
+    // OrderNo 타입 자체로 id가 주문번호임을 알 수 있다.
+    private OrderNo id;
+
     private List<OrderLine> orderLines;
     private int totalAmounts;
     private OrderState state;
@@ -47,7 +51,7 @@ public class Order {
 
     private void calculateTotalAmounts() {
         this.totalAmounts = orderLines.stream()
-                .mapToInt(x -> x.getAmounts())
+                .mapToInt(x -> x.getAmounts().getValue())
                 .sum();
     }
 

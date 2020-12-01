@@ -1,23 +1,25 @@
 package com.book.dddstart.shop.chapter1.domain.order;
 
+import com.book.dddstart.shop.chapter1.domain.order.value.Money;
+
 public class OrderLine {
     private Product product;
-    private int price;
+    private Money price;
     private int quantity;
-    private int amounts;
+    private Money amounts;
 
-    public OrderLine(Product product, int price, int quantity) {
+    public OrderLine(Product product, Money price, int quantity) {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
         this.amounts = calculateAmounts();
     }
 
-    private int calculateAmounts() {
-        return price * amounts;
+    private Money calculateAmounts() {
+        return price.multiply(quantity);
     }
 
-    public int getAmounts() {
+    public Money getAmounts() {
         return amounts;
     }
 }
